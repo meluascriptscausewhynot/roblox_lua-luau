@@ -70,12 +70,6 @@ local Button = Tab:CreateButton({
        if handgunscriptgumibearz then
            handgunscriptgumibearz:Destroy()
        end
-       Rayfield:Notify({
-        Title = "Throw away the gun",
-        Content = "if you want to stop the OP script",
-        Duration = 4,
-        Image = "info",
-    })
    -- The function that takes place when the button is pressed
         -- Decompiler will be improved soon!
 -- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/wyButjTMhM)
@@ -496,7 +490,7 @@ end)
    end, --final
 })
 local Button = Tab:CreateButton({
-   Name = "Fix Right Dab",
+   Name = "Fix Right Dab (You only have to run this once)",
    Callback = function()
        local rdabreferencegumibearz
        if not game.Players.LocalPlayer.Backpack:FindFirstChild("rdab") then
@@ -585,7 +579,7 @@ end)
    end, --final
 })
 local Button = Tab:CreateButton({
-   Name = "Fix Left Dab",
+   Name = "Fix Left Dab (You only have to run this once)",
    Callback = function()
        local dabreferencegumibearz
        if not game.Players.LocalPlayer.Backpack:FindFirstChild("dab") then
@@ -698,12 +692,6 @@ local Button = Tab:CreateButton({
        if forkscriptgumibearz then
            forkscriptgumibearz:Destroy()
        end
-       Rayfield:Notify({
-            Title = "You will need to run the script",
-            Content = "again if you die",
-            Duration = 4,
-            Image = "info",
-        })
       -- Decompiler will be improved soon!
 -- Decompiled with Konstant V2.1, a fast Luau decompiler made in Luau by plusgiant5 (https://discord.gg/wyButjTMhM)
 -- Decompiled on 2025-01-16 18:17:23
@@ -782,22 +770,41 @@ end)
 
    end, --final
 })
-local Tab = Window:CreateTab("Teleports", "map-pin")
-local Divider = Tab:CreateDivider()
 local Button = Tab:CreateButton({
-   Name = "Cornbread",
+   Name = "Quick refill cake batter",
    Callback = function()
    -- The function that takes place when the button is pressed
-        game.Players.LocalPlayer.Character:MoveTo(workspace.CORN.Position)
+        local lastposition = game.Players.LocalPlayer.Character.Torso.Position
+        local icing
+        local backpack
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Icing") then
+            if game.Players.LocalPlayer.Backpack.Icing.ammo.Value ~= 0 then
+                return
+            end
+            game.Players.LocalPlayer.Backpack.Icing.Parent = game.Players.LocalPlayer.Character
+            icing = game.Players.LocalPlayer.Character.Icing
+            backpack = true
+        else
+            if game.Players.LocalPlayer.Character:FindFirstChild("Icing") then
+                if game.Players.LocalPlayer.Character.Icing.ammo.Value ~= 0 then
+                    return
+                end
+                icing = game.Players.LocalPlayer.Character.Icing
+                backpack = false
+            else
+                return
+            end
+        end
+        local numam = 0
+        repeat
+            numam = numam + 1
+            game.Players.LocalPlayer.Character:MoveTo(workspace["rocky refill"].r.Position)
+            wait(0.2)
+        until icing.ammo.Value ~= 0 or numam == 50
+        game.Players.LocalPlayer.Character:MoveTo(lastposition)
    end,
 })
-local Button = Tab:CreateButton({
-   Name = "Bracelety",
-   Callback = function()
-   -- The function that takes place when the button is pressed
-        game.Players.LocalPlayer.Character:MoveTo(workspace.bracelety.Seat.Position)
-   end,
-})
+local Tab = Window:CreateTab("Place Teleports", "map-pin")
 local Divider = Tab:CreateDivider()
 local Button = Tab:CreateButton({
    Name = "Steakhouse",
@@ -884,8 +891,282 @@ local Button = Tab:CreateButton({
         game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-81.88142395019531, 4.489599704742432, 255.05612182617188))
    end,
 })
-local Tab = Window:CreateTab("Better Menu", "utensils") -- Title, Image
-local Section = Tab:CreateSection("The menu doesn't work sometimes so I made my own >:)")
+local Section = Tab:CreateSection("Note: i just found out on 1/28/25 that theres an actual morph room like what")
+local Section = Tab:CreateSection("sadly it doesnt work tho")
+local Button = Tab:CreateButton({
+   Name = "Actual Morph Room??",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-305.27398681640625, -415.8878173828125, -42041.64453125))
+   end,
+})
+
+
+local Tab = Window:CreateTab("Character Teleports", "map-pin")
+local Section = Tab:CreateSection("Note: I haven't put the characters in any specific order")
+local Section = Tab:CreateSection("also another note: there is a lot of characters")
+local Divider = Tab:CreateDivider()
+local Button = Tab:CreateButton({
+   Name = "Cornbread",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.CORN.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Bracelety",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.bracelety.Seat.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Naily",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   if workspace:FindFirstChild("Naily") then
+        game.Players.LocalPlayer.Character:MoveTo(workspace.Naily.Handle.Position)
+    else
+        Rayfield:Notify({
+            Title = "Naily is gone",
+            Content = "Please wait for Naily to come back",
+            Duration = 4,
+            Image = "circle-alert",
+        })
+    end
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Bell",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.bell.Model.Dent.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Firey",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(314.72552490234375, 2.1602821350097656, -184.8592071533203))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Liy",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.liy.Model.Union.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Black Hole",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.blackhole.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Blocky",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(11.514331817626953, 2.37904691696167, -77.28327178955078))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Leafy and Balloony",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.leafy.Part.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Two",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.Two.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Donut",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   --1304.1893310546875, 140.36788940429688, -3193.624267578125
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-69.82012176513672, 5.8059234619140625, 243.40179443359375))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Teardrop",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-90.85347747802734, 8.62852668762207, 83.69060516357422))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Teardrop (The Pillary Ruins)",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(1304.1893310546875, 140.36788940429688, -3193.624267578125))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Spongy",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(1.4866180419921875, 5.726898193359375, 500.79705810546875))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Rocky",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace["rocky refill"].r.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Remote",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-405.4050598144531, 3.2114920616149902, 629.2705688476562))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Tennis Ball",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace["tennis ball"].Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "X",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace["X and emeralds"].Part.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "David",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(98.78348541259766, 4.483013153076172, -859.9462890625))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Yellow Face",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(56.485740661621094, 4.4993896484375, -859.4707641601562))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Profily",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.User.Part.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Liar Ball",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.Liarball.Model.Part.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Loser",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.Loser.Part.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Four",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.Four.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Spongy (The Pillary Ruins)",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.spongy.spongy.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Firey (The Pillary Ruins)",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(1454.46240234375, 196.16783142089844, -3113.443603515625))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Lollipop",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(1305.475830078125, 225.5721893310547, -2989.552490234375))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Gelatin",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(1313.5054931640625, 265.07830810546875, -3011.936279296875))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Gelatin (Steakhouse)",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-467.91607666015625, 42.871055603027344, -147.32684326171875))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Tree",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.tree.Part.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Golf Ball",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-5208.0576171875, 151.7541046142578, 557.481689453125))
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Bubble",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.bubble.Part.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Pie",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.pie.pie.pie.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Fanny",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.morphroom.fanny.Part.Position)
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Fanny (Actual Morph Room??)",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        game.Players.LocalPlayer.Character:MoveTo(workspace.morphroom.morphroom.fanny.Model.Part.Position)
+   end,
+})
+local Label = Tab:CreateLabel("Pencil and Match are on the iance swing")
+local Label = Tab:CreateLabel("Fries is on the Free Food swing")
+local Label = Tab:CreateLabel("Clock is on The Losers swing")
+
+local Tab = Window:CreateTab("Steakhouse Menu", "utensils") -- Title, Image
+local Section = Tab:CreateSection("The steakhouse menu doesn't work sometimes so I added it here")
 
 local Button = Tab:CreateButton({
    Name = "Rare Steak",
@@ -962,7 +1243,7 @@ local Section = Tab:CreateSection("Hi")
 local Section = Tab:CreateSection("I made a script for this game for fun")
 local Section = Tab:CreateSection("I hope you enjoy this :)")
 local Divider = Tab:CreateDivider()
-local Section = Tab:CreateSection("Wow scripts take really long to make omg")
+local Section = Tab:CreateSection("this took literally forever to make")
 local Divider = Tab:CreateDivider()
 local Button = Tab:CreateButton({
    Name = "Remove Rayfield (Unload script)",
