@@ -1,5 +1,9 @@
 --bruh i feel useless like all of this coding all of this work just for nobody to use it
 --you'll use this, right?
+
+--WHOEVER IS SEEING THIS CODE RIGHT NOW I ACCIDENTALLY FRIENDED ONE OF THE DEVS OF THIS GAME ON ROBLOX WHAT WHY DID HE ACCEPT
+
+
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
    Name = "The Hand-powered Recovery Center Gui",
