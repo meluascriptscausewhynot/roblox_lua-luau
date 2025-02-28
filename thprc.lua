@@ -1,9 +1,5 @@
 --bruh i feel useless like all of this coding all of this work just for nobody to use it
 --you'll use this, right?
-
---WHOEVER IS SEEING THIS CODE RIGHT NOW I ACCIDENTALLY FRIENDED ONE OF THE DEVS OF THIS GAME ON ROBLOX WHAT WHY DID HE ACCEPT
-
-
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
    Name = "The Hand-powered Recovery Center Gui",
@@ -254,6 +250,126 @@ local Input = Tab:CreateInput({
             else
                 game.ReplicatedStorage.Morph:FireServer(morph, false)
             end
+        end
+   end,
+})
+local Pshtoggle = Tab:CreateToggle({
+   Name = "Teleport to character when push",
+   CurrentValue = true,
+   Flag = "Pshtoggle", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+local Input53 = Tab:CreateInput({
+   Name = "Type Character to push",
+   CurrentValue = "",
+   PlaceholderText = "BOMBY",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input1",
+   Callback = function(Text)
+   -- The function that takes place when the input is changed
+   -- The variable (Text) is a string for the value in the text box
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Push Character",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   local Text = Input53.CurrentValue
+   if Text == "" then
+       Text = Input53.PlaceholderText
+   end
+        if game.ReplicatedStorage.ContestantsClient:FindFirstChild(string.upper(Text)) then
+            local morph = game.ReplicatedStorage.ContestantsClient[string.upper(Text)]
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Push Contestants") then
+                if Pshtoggle.CurrentValue == true then
+                    if workspace.Contestants[string.upper(Text)]:FindFirstChild("Torso") then
+                        game.Players.LocalPlayer.Character:MoveTo(workspace.Contestants[string.upper(Text)]:FindFirstChild("Torso").Position)
+                    end
+                    game.Players.LocalPlayer.Backpack:FindFirstChild("Push Contestants").ClickEvent:FireServer(workspace.Contestants[string.upper(Text)])
+                else
+                    game.Players.LocalPlayer.Backpack:FindFirstChild("Push Contestants").ClickEvent:FireServer(workspace.Contestants[string.upper(Text)])
+                end
+            elseif game.Players.LocalPlayer.Character:FindFirstChild("Push Contestants") then
+                if Pshtoggle.CurrentValue == true then
+                    if workspace.Contestants[string.upper(Text)]:FindFirstChild("Torso") then
+                        game.Players.LocalPlayer.Character:MoveTo(workspace.Contestants[string.upper(Text)]:FindFirstChild("Torso").Position)
+                    end
+                    game.Players.LocalPlayer.Character:FindFirstChild("Push Contestants").ClickEvent:FireServer(workspace.Contestants[string.upper(Text)])
+                else
+                    game.Players.LocalPlayer.Character:FindFirstChild("Push Contestants").ClickEvent:FireServer(workspace.Contestants[string.upper(Text)])
+                end
+            end
+        end
+   end,
+})
+local Shttoggle = Tab:CreateToggle({
+   Name = "Teleport to character when push",
+   CurrentValue = true,
+   Flag = "Shttoggle", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+local Input53 = Tab:CreateInput({
+   Name = "Type Character to shoot zap ray at",
+   CurrentValue = "",
+   PlaceholderText = "BOMBY",
+   RemoveTextAfterFocusLost = false,
+   Flag = "Input1",
+   Callback = function(Text)
+   -- The function that takes place when the input is changed
+   -- The variable (Text) is a string for the value in the text box
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Shoot zap ray at Character",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   local Text = Input53.CurrentValue
+   if Text == "" then
+       Text = Input53.PlaceholderText
+   end
+        if game.ReplicatedStorage.ContestantsClient:FindFirstChild(string.upper(Text)) then
+            local morph = game.ReplicatedStorage.ContestantsClient[string.upper(Text)]
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Zap Ray") then
+                if Shttoggle.CurrentValue == true then
+                    if workspace.Contestants[string.upper(Text)]:FindFirstChild("Torso") then
+                        game.Players.LocalPlayer.Character:MoveTo(workspace.Contestants[string.upper(Text)]:FindFirstChild("Torso").Position)
+                        game.Players.LocalPlayer.Backpack:FindFirstChild("Zap Ray").ZapShoot:FireServer(workspace.Contestants[string.upper(Text)].Torso.Position)
+                    end
+                else
+                    if workspace.Contestants[string.upper(Text)]:FindFirstChild("Torso") then
+                        game.Players.LocalPlayer.Backpack:FindFirstChild("Zap Ray").ZapShoot:FireServer(workspace.Contestants[string.upper(Text)].Torso.Position)
+                    end
+                end
+            elseif game.Players.LocalPlayer.Character:FindFirstChild("Zap Ray") then
+                if Shttoggle.CurrentValue == true then
+                    if workspace.Contestants[string.upper(Text)]:FindFirstChild("Torso") then
+                        game.Players.LocalPlayer.Character:MoveTo(workspace.Contestants[string.upper(Text)]:FindFirstChild("Torso").Position)
+                        game.Players.LocalPlayer.Character:FindFirstChild("Zap Ray").ZapShoot:FireServer(workspace.Contestants[string.upper(Text)].Torso.Position)
+                    end
+                else
+                    if workspace.Contestants[string.upper(Text)]:FindFirstChild("Torso") then
+                        game.Players.LocalPlayer.Character:FindFirstChild("Zap Ray").ZapShoot:FireServer(workspace.Contestants[string.upper(Text)].Torso.Position)
+                    end
+                end
+            end
+        end
+   end,
+})
+local Button = Tab:CreateButton({
+   Name = "Shoot zap ray at all characters",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Zap Ray") then
+            game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack["Zap Ray"])
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/meluascriptscausewhynot/roblox_lua-luau/refs/heads/main/extrafiles/zapraycharacter.lua", true))()
+        else
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/meluascriptscausewhynot/roblox_lua-luau/refs/heads/main/extrafiles/zapraycharacter.lua", true))()
         end
    end,
 })
