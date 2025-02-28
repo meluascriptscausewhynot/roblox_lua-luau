@@ -3983,6 +3983,17 @@ local function VHCKUS_fake_script() -- Fake Script: StarterGui.YARHM.Murder Myst
 			end,
 		}}
 	})
+	
+	table.insert(module, {
+		Type = "Button",
+		Args = {"Fling everyone", function(Self)
+			local children = game.Players:GetChildren()
+			for i = 1, #children do
+			    miniFling(children[i])
+			end
+		end,}
+	})
+	
 	table.insert(module, {
 		Type = "ButtonGrid",
 		Args = {2, {
