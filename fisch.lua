@@ -32,7 +32,7 @@ local Window = Rayfield:CreateWindow({
       Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
-local Tab = Window:CreateTab("the stuff", "rewind")
+local Tab = Window:CreateTab("the stuff")
 local Section = Tab:CreateSection("")
 local Button = Tab:CreateButton({
    Name = "Destroy Rayfield",
@@ -78,6 +78,7 @@ game.Players.PlayerAdded:Connect(function()
 end)
 
 game.Players.PlayerRemoving:Connect(function()
+    wait(1)
     local tablet = {}
     local children = game.Players:GetChildren()
     for i = 1, #children do
@@ -91,7 +92,7 @@ game.Players.PlayerRemoving:Connect(function()
 end)
 
 local Button = Tab:CreateButton({
-   Name = "Button Example",
+   Name = "trade items",
    Callback = function()
    -- The function that takes place when the button is pressed
         local players = game:GetService("Players")
