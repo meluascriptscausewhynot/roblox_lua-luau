@@ -1,4 +1,4 @@
-StarterGui:SetCore("SendNotification", {
+game.StarterGui:SetCore("SendNotification", {
   Title = "hi", -- Notification title
   Text = "i didn't make infinite yield, i created this script (infinite-yield-(loads-official-script).lua) to load infinite yield without me having to click out of roblox", -- Notification text
   Icon = "", -- Notification icon (optional)
